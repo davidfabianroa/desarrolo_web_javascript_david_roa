@@ -10,7 +10,6 @@
 			var nueve=document.getElementById("9");
 			var on=document.getElementById("on");
 			var sign=document.getElementById("sign");
-			var raiz=document.getElementById("raiz");
 			var dividido=document.getElementById("dividido");
 			var por=document.getElementById("por");
 			var menos=document.getElementById("menos");
@@ -19,8 +18,12 @@
 			var punto=document.getElementById("punto");
 			var display=document.getElementById("display");
 			var numeros=[cero,uno,dos,tres,cuatro,cinco,seis,siete,ocho,nueve,on,punto,sign];
+            var signos=[dividido,por,mas,menos,igual];
 			var teclas=document.getElementsByClassName("tecla");
-			var contadordisplay=Number(contadordisplay);
+			var contadordisplay;
+			var num1;
+			var num2;
+			var operador;
 window.onload=function()
 {
 	for(var i=0; i<teclas.length;i++)
@@ -34,17 +37,26 @@ window.onload=function()
 		numeros[a].addEventListener("click",escribir,false);
 		numeros[a].addEventListener("click",funcioncontador,false);
 		}
+	for(var b=0; b<signos.length;b++)
+		{
+		signos[b].addEventListener("click",operaciones,false);
+		
+		}
 };
 			
 function crecer(){this.style.transform = "scale(0.9)"}
 function disminuir(){this.style.transform = "scale(1)"}
 function quitar(){document.getElementById("display").innerHTML="";}
+function set(){
+	num1=0;
+	num2=0;
+	
+}
 function funcioncontador(){contadordisplay=display.innerHTML;}
-function signo()
-{
-	var cambiosigno=contadordisplay*-1;
-	document.getElementById("display").innerHTML= cambiosigno;
-}   
+function signo(){
+					var cambiosigno=contadordisplay*-1;
+					document.getElementById("display").innerHTML= cambiosigno;
+				}   
 function escribir()
 {
          if(display.textContent === "0"){quitar()}
@@ -92,6 +104,7 @@ function escribir()
 				 else if (this===on)
 						{
 							document.getElementById("display").innerHTML="0";
+							set();
 
 						}
 				 else if (this===punto)
@@ -119,6 +132,68 @@ function escribir()
 				 
  				}
 }
+
+function operaciones()
+{
+if (display.textContent!=0){	if(this===mas)
+								{
+									num1=contadordisplay;
+									quitar();
+									operador="+";
+								}
+								else if(this===menos)
+								{
+									num1=contadordisplay;
+									quitar();
+									operador="-";
+								}
+								else if(this===por)
+								{
+									num1=contadordisplay;
+									quitar();
+									operador="*";
+								}
+								else if(this===dividido)
+								{
+									num1=contadordisplay;
+									quitar();
+									operador="/";
+								}
+						   		else if(this===igual)
+								{
+									num2=contadordisplay;
+									culminar();
+									
+								}
+						  }
+}
+function culminar()
+{
+	if(num1!=0)
+	{
+		var tel=0;
+		switch(operador)
+		{
+			case "+":
+				tel= parseFloat (num1) + parseFloat (num2);
+				break;
+			case "-":
+				tel= parseFloat (num1) - parseFloat (num2);
+				break;
+			case "*":
+				tel= parseFloat (num1) * parseFloat (num2);
+				break;
+			case "/":
+				tel= parseFloat (num1) / parseFloat (num2);
+				break;
+		}
+		document.getElementById("display").innerHTML = tel;
+		set();
+		
+	}
+}
+						  
+
 	
 
 
