@@ -18,9 +18,9 @@
 			var igual=document.getElementById("igual");
 			var punto=document.getElementById("punto");
 			var display=document.getElementById("display");
-			var numeros=[cero,uno,dos,tres,cuatro,cinco,seis,siete,ocho,nueve,on,punto];
+			var numeros=[cero,uno,dos,tres,cuatro,cinco,seis,siete,ocho,nueve,on,punto,sign];
 			var teclas=document.getElementsByClassName("tecla");
-			var contadordisplay;
+			var contadordisplay=Number(contadordisplay);
 window.onload=function()
 {
 	for(var i=0; i<teclas.length;i++)
@@ -33,40 +33,25 @@ window.onload=function()
 		{
 		numeros[a].addEventListener("click",escribir,false);
 		numeros[a].addEventListener("click",funcioncontador,false);
-		
-		
 		}
 };
 			
-function crecer(){
-	this.style.transform = "scale(0.9)"
-}
-function disminuir(){
-	this.style.transform = "scale(1)"
-}
-function quitar(){
-	document.getElementById("display").innerHTML="";
-	
-}
-
-function funcioncontador(){
-	contadordisplay=display.innerHTML;
-}
-    
+function crecer(){this.style.transform = "scale(0.9)"}
+function disminuir(){this.style.transform = "scale(1)"}
+function quitar(){document.getElementById("display").innerHTML="";}
+function funcioncontador(){contadordisplay=display.innerHTML;}
+function signo()
+{
+	var cambiosigno=contadordisplay*-1;
+	document.getElementById("display").innerHTML= cambiosigno;
+}   
 function escribir()
 {
-         if(display.textContent === "0")
+         if(display.textContent === "0"){quitar()}
+	     if (this===on){document.getElementById("display").innerHTML="0";}
+		 if (display.textContent.length <= 7) 
 				{
-	        		quitar();
-				}
-	     if (this===on)
-						{
-							document.getElementById("display").innerHTML="0";
-
-						}
-	     
-		if (display.textContent.length <= 7) 
-				{if(this===uno)
+					if(this===uno)
 						{
 							document.getElementById("display").innerHTML+="1";
 						}
@@ -125,6 +110,11 @@ function escribir()
 							if ( display.textContent === "" ){document.getElementById("display").innerHTML="0";}
 							else if (display.textContent != "0"){document.getElementById("display").innerHTML+="0";}
 								
+						}
+				 else if (this===sign)
+						{
+							
+							signo();	
 						}
 				 
  				}
