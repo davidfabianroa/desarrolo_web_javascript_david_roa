@@ -24,6 +24,7 @@
 			var num1;
 			var num2;
 			var operador;
+			
 window.onload=function()
 {
 	for(var i=0; i<teclas.length;i++)
@@ -40,17 +41,16 @@ window.onload=function()
 	for(var b=0; b<signos.length;b++)
 		{
 		signos[b].addEventListener("click",operaciones,false);
-		
+		signos[b].addEventListener("click",funcioncontador,false);
 		}
 };
 			
 function crecer(){this.style.transform = "scale(0.9)"}
 function disminuir(){this.style.transform = "scale(1)"}
 function quitar(){document.getElementById("display").innerHTML="";}
-function set(){
+function reset(){
 	num1=0;
 	num2=0;
-	
 }
 function funcioncontador(){contadordisplay=display.innerHTML;}
 function signo(){
@@ -60,7 +60,7 @@ function signo(){
 function escribir()
 {
          if(display.textContent === "0"){quitar()}
-	     if (this===on){document.getElementById("display").innerHTML="0";}
+	     if (this===on){document.getElementById("display").innerHTML="0"; reset();}
 		 if (display.textContent.length <= 7) 
 				{
 					if(this===uno)
@@ -104,7 +104,7 @@ function escribir()
 				 else if (this===on)
 						{
 							document.getElementById("display").innerHTML="0";
-							set();
+							
 
 						}
 				 else if (this===punto)
@@ -188,8 +188,6 @@ function culminar()
 				break;
 		}
 		document.getElementById("display").innerHTML = tel;
-		set();
-		
 	}
 }
 						  
