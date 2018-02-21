@@ -20,6 +20,7 @@
 			var display=document.getElementById("display");
 			var numeros=[cero,uno,dos,tres,cuatro,cinco,seis,siete,ocho,nueve,on,punto];
 			var teclas=document.getElementsByClassName("tecla");
+			var contadordisplay;
 window.onload=function()
 {
 	for(var i=0; i<teclas.length;i++)
@@ -29,11 +30,13 @@ window.onload=function()
 		
 		}
 	for(var a=0; a<numeros.length;a++)
-	{
+		{
 		numeros[a].addEventListener("click",escribir,false);
+		numeros[a].addEventListener("click",funcioncontador,false);
 		
-	}
-	};
+		
+		}
+};
 			
 function crecer(){
 	this.style.transform = "scale(0.9)"
@@ -45,13 +48,24 @@ function quitar(){
 	document.getElementById("display").innerHTML="";
 	
 }
+
+function funcioncontador(){
+	contadordisplay=display.innerHTML;
+}
+    
 function escribir()
 {
-         if(display.textContent == "0")
+         if(display.textContent === "0")
 				{
 	        		quitar();
 				}
-		if (display.textContent.length <= 8) 
+	     if (this===on)
+						{
+							document.getElementById("display").innerHTML="0";
+
+						}
+	     
+		if (display.textContent.length <= 7) 
 				{if(this===uno)
 						{
 							document.getElementById("display").innerHTML+="1";
@@ -97,13 +111,11 @@ function escribir()
 						}
 				 else if (this===punto)
 						{
-							if(display.textContent ==".")
-							{document.getElementById("display").innerHTML="0";}
-							else{
-								document.getElementById("display").innerHTML+=".";
-							    }
-
+							if ( display.textContent === "" ){document.getElementById("display").innerHTML="0.";}
+							else if (contadordisplay.indexOf(".")== -1){document.getElementById("display").innerHTML+=".";}
+								
 						}
+				 
  				}
 }
 	
