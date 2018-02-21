@@ -115,6 +115,17 @@ function escribir()
 							else if (contadordisplay.indexOf(".")== -1){document.getElementById("display").innerHTML+=".";}
 								
 						}
+				 else if (this===on)
+						{
+							document.getElementById("display").innerHTML="0";
+
+						}
+				 else if (this===cero)
+						{
+							if ( display.textContent === "" ){document.getElementById("display").innerHTML="0";}
+							else if (display.textContent != "0"){document.getElementById("display").innerHTML+="0";}
+								
+						}
 				 
  				}
 }
