@@ -24,172 +24,166 @@
 			var num1;
 			var num2;
 			var operador;
-			
-window.onload=function()
-{
-	for(var i=0; i<teclas.length;i++)
-		{
-		teclas[i].addEventListener("mousedown",crecer,false);
-		teclas[i].addEventListener("mouseup",disminuir,false);
-		
-		}
-	for(var a=0; a<numeros.length;a++)
-		{
-		numeros[a].addEventListener("click",escribir,false);
-		numeros[a].addEventListener("click",funcioncontador,false);
-		}
-	for(var b=0; b<signos.length;b++)
-		{
-		signos[b].addEventListener("click",operaciones,false);
-		signos[b].addEventListener("click",funcioncontador,false);
-		}
-};
+			var tel;			
+window.onload=function(){
+						for(var i=0; i<teclas.length;i++){
+							teclas[i].addEventListener("mousedown",crecer,false);
+							teclas[i].addEventListener("mouseup",disminuir,false);		
+							}
+						for(var a=0; a<numeros.length;a++){
+							numeros[a].addEventListener("click",escribir,false);
+							numeros[a].addEventListener("click",funcioncontador,false);
+							}
+						for(var b=0; b<signos.length;b++){
+							signos[b].addEventListener("click",operaciones,false);
+							signos[b].addEventListener("click",funcioncontador,false);
+							}
+						};
 			
 function crecer(){this.style.transform = "scale(0.9)"}
 function disminuir(){this.style.transform = "scale(1)"}
 function quitar(){document.getElementById("display").innerHTML="";}
-function reset(){
-	num1=0;
-	num2=0;
-}
+function reset(){num2=0;}
 function funcioncontador(){contadordisplay=display.innerHTML;}
 function signo(){
-					var cambiosigno=contadordisplay*-1;
-					document.getElementById("display").innerHTML= cambiosigno;
+				var cambiosigno=contadordisplay*-1;
+				document.getElementById("display").innerHTML= cambiosigno;
+				reset();
 				}   
-function escribir()
-{
-         if(display.textContent === "0"){quitar()}
-	     if (this===on){document.getElementById("display").innerHTML="0"; reset();}
-		 if (display.textContent.length <= 7) 
-				{
-					if(this===uno)
-						{
-							document.getElementById("display").innerHTML+="1";
-						}
-					else if (this===dos)
-						{
-							document.getElementById("display").innerHTML+="2";
-						}
-						if(this===tres)
-						{
-							document.getElementById("display").innerHTML+="3";
-						}
-					else if (this===cuatro)
-						{
-							document.getElementById("display").innerHTML+="4";
-						}
-					if(this===cinco)
-						{
-							document.getElementById("display").innerHTML+="5";
-						}
-					else if (this===seis)
-						{
-							document.getElementById("display").innerHTML+="6";
-						}
-						if(this===siete)
-						{
-							document.getElementById("display").innerHTML+="7";
-						}
-					else if (this===ocho)
-						{
-							document.getElementById("display").innerHTML+="8";
+function escribir(){
+					 if(display.textContent === "0" || num2!=0){quitar();reset()}
+					 if (this===on){document.getElementById("display").innerHTML="0"; reset();}
+					 if (display.textContent.length <= 7) 
+														{
+															if(this===uno)
+																{
+																	document.getElementById("display").innerHTML+="1";
+																}
+															else if (this===dos)
+																{
+																	document.getElementById("display").innerHTML+="2";
+																}
+																if(this===tres)
+																{
+																	document.getElementById("display").innerHTML+="3";
+																}
+															else if (this===cuatro)
+																{
+																	document.getElementById("display").innerHTML+="4";
+																}
+															if(this===cinco)
+																{
+																	document.getElementById("display").innerHTML+="5";
+																}
+															else if (this===seis)
+																{
+																	document.getElementById("display").innerHTML+="6";
+																}
+																if(this===siete)
+																{
+																	document.getElementById("display").innerHTML+="7";
+																}
+															else if (this===ocho)
+																{
+																	document.getElementById("display").innerHTML+="8";
 
-						}
-				else if (this===nueve)
-						{
-							document.getElementById("display").innerHTML+="9";
+																}
+														else if (this===nueve)
+																{
+																	document.getElementById("display").innerHTML+="9";
 
-						}
-				 else if (this===on)
-						{
-							document.getElementById("display").innerHTML="0";
-							
+																}
+														 else if (this===on)
+																{
+																	document.getElementById("display").innerHTML="0";
 
-						}
-				 else if (this===punto)
-						{
-							if ( display.textContent === "" ){document.getElementById("display").innerHTML="0.";}
-							else if (contadordisplay.indexOf(".")== -1){document.getElementById("display").innerHTML+=".";}
-								
-						}
-				 else if (this===on)
-						{
-							document.getElementById("display").innerHTML="0";
 
-						}
-				 else if (this===cero)
-						{
-							if ( display.textContent === "" ){document.getElementById("display").innerHTML="0";}
-							else if (display.textContent != "0"){document.getElementById("display").innerHTML+="0";}
-								
-						}
-				 else if (this===sign)
-						{
-							
-							signo();	
-						}
-				 
- 				}
-}
+																}
+														 else if (this===punto)
+																{
+																	if ( display.textContent === "" ){document.getElementById("display").innerHTML="0.";}
+																	else if (contadordisplay.indexOf(".")== -1){document.getElementById("display").innerHTML+=".";}
 
-function operaciones()
-{
-if (display.textContent!=0){	if(this===mas)
-								{
-									num1=contadordisplay;
-									quitar();
-									operador="+";
-								}
-								else if(this===menos)
-								{
-									num1=contadordisplay;
-									quitar();
-									operador="-";
-								}
-								else if(this===por)
-								{
-									num1=contadordisplay;
-									quitar();
-									operador="*";
-								}
-								else if(this===dividido)
-								{
-									num1=contadordisplay;
-									quitar();
-									operador="/";
-								}
-						   		else if(this===igual)
-								{
-									num2=contadordisplay;
-									culminar();
-									
-								}
-						  }
-}
-function culminar()
-{
-	if(num1!=0)
-	{
-		var tel=0;
-		switch(operador)
-		{
-			case "+":
-				tel= parseFloat (num1) + parseFloat (num2);
-				break;
-			case "-":
-				tel= parseFloat (num1) - parseFloat (num2);
-				break;
-			case "*":
-				tel= parseFloat (num1) * parseFloat (num2);
-				break;
-			case "/":
-				tel= parseFloat (num1) / parseFloat (num2);
-				break;
-		}
-		document.getElementById("display").innerHTML = tel;
-	}
-}
+																}
+														 else if (this===on)
+																{
+																	document.getElementById("display").innerHTML="0";
+
+																}
+														 else if (this===cero)
+																{
+																	if ( display.textContent === "" ){document.getElementById("display").innerHTML="0";}
+																	else if (display.textContent != "0"){document.getElementById("display").innerHTML+="0";}
+
+																}
+														 else if (this===sign)
+																{
+
+																	signo();	
+																}
+
+														}
+					}
+
+function operaciones(){
+						if (display.textContent!=0){	if(this===mas)
+														{
+															num1=contadordisplay;
+															quitar();
+															operador="+";
+														}
+														else if(this===menos)
+														{
+															num1=contadordisplay;
+															quitar();
+															operador="-";
+														}
+														else if(this===por)
+														{
+															num1=contadordisplay;
+															quitar();
+															operador="*";
+														}
+														else if(this===dividido)
+														{
+															num1=contadordisplay;
+															quitar();
+															operador="/";
+														}
+														else if(this===igual)
+														{
+															num2=contadordisplay;
+															culminar();
+
+														}
+												  }
+						}
+function culminar(){
+					if(num1!=0)
+					{
+
+						switch(operador)
+						{
+							case "+":
+								tel= parseFloat (num1) + parseFloat (num2);
+								break;
+							case "-":
+								tel= parseFloat (num1) - parseFloat (num2);
+								break;
+							case "*":
+								tel= parseFloat (num1) * parseFloat (num2);
+								break;
+							case "/":
+								tel= parseFloat (num1) / parseFloat (num2);
+								break;
+						}
+						var loco = tel.toString().substring(0, 8);		
+						document.getElementById("display").innerHTML= parseFloat(loco);
+
+
+					}
+
+				}
 						  
 
 	
