@@ -46,7 +46,7 @@ function crecer(){this.style.transform = "scale(0.9)";}//aumenta tamaño de tecl
 function disminuir(){this.style.transform = "scale(1)";}//retorna el tamaño de la tecla
 function quitar(){document.getElementById("display").innerHTML="";}//elimina los numeros en el display
 function reset(){num2=0;}
-function funcioncontador(){contadordisplay=display.innerHTML;}//guarda lo que sale en el display
+function funcioncontador(){if(display.innerHTML!==""){contadordisplay=display.innerHTML;}}//guarda lo que sale en el display
 function signo(){/**/
 				var cambiosigno=contadordisplay*-1;
 				document.getElementById("display").innerHTML= cambiosigno;
