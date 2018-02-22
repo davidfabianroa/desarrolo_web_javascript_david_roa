@@ -101,7 +101,7 @@ function escribir(){
 																}
 														 else if (this===punto)
 																{
-																	if ( display.textContent === "" ){document.getElementById("display").innerHTML="0.";}
+																	if ( display.textContent === "" )						{document.getElementById("display").innerHTML="0.";}
 																	else if (contadordisplay.indexOf(".")== -1){document.getElementById("display").innerHTML+=".";}
 
 																}
@@ -150,18 +150,22 @@ function operaciones(){
 															quitar();
 															operador="/";
 														}
-														else if(this===igual)
+														else if(this===igual && num2==0)
 														{
 															num2=contadordisplay;
 															culminar();
 
+														}
+													else if(this===igual && num2 !=0)
+														{
+															num2=contadordisplay;
+															resetculminar();
 														}
 												  }
 						}
 function culminar(){
 					if(num1!=0)
 					{
-
 						switch(operador)
 						{
 							case "+":
@@ -179,11 +183,32 @@ function culminar(){
 						}
 						var loco = tel.toString().substring(0, 8);		
 						document.getElementById("display").innerHTML= parseFloat(loco);
-
-
+						num1=num2;
 					}
-
 				}
+function resetculminar(){
+					if(num1!=0)
+					{
+						switch(operador)
+						{
+							case "+":
+								tel= parseFloat (num1) + parseFloat (num2);
+								break;
+							case "-":
+								tel= parseFloat (num2) - parseFloat (num1);
+								break;
+							case "*":
+								tel= parseFloat (num1) * parseFloat (num2);
+								break;
+							case "/":
+								tel= parseFloat (num2) / parseFloat (num1);
+								break;
+						}
+						var loco = tel.toString().substring(0, 8);		
+						document.getElementById("display").innerHTML= parseFloat(loco);
+					}
+				}
+
 						  
 
 	
