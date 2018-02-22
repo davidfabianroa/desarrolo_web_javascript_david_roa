@@ -55,7 +55,7 @@ function signo(){/**/
 /*funcion para escribir en la pantalla*/
 function escribir(){
 					 if(display.textContent === "0" || num2!==0 ){quitar();reset()}
-					 if (this===on){document.getElementById("display").innerHTML="0"; reset();}
+					 if (this===on){document.getElementById("display").innerHTML="0"; reset();}/*,metodo boton on/c*/
 					 if (display.textContent.length <= 7) 
 														{
 															if(this===uno)
@@ -104,7 +104,7 @@ function escribir(){
 																}
 														 else if (this===punto)
 																{
-																	if ( display.textContent === "" )						{document.getElementById("display").innerHTML="0.";}
+																	if ( display.textContent === "" )/*metodo tecla punto*/		{document.getElementById("display").innerHTML="0.";}
 																	else if (contadordisplay.indexOf(".")== -1){document.getElementById("display").innerHTML+=".";}
 
 																}
@@ -127,7 +127,7 @@ function escribir(){
 
 														}
 					}
-
+/*funcion para selecionar la operacion a realizar */
 function operaciones(){
 						if(this===mas)
 						{
@@ -153,7 +153,7 @@ function operaciones(){
 							quitar();
 							operador="/";
 						}
-						else if(this===igual && num2==0)
+						else if(this===igual && num2==0)/*metodo boton igual*/
 						{
 							num2=contadordisplay;
 							culminar();
@@ -166,6 +166,7 @@ function operaciones(){
 						}
 												  
 						}
+/*realiza las primeras operaciones cuando e inizilizala calculadora*/
 function culminar(){
 					if(num1!=0)
 					{
@@ -190,6 +191,7 @@ function culminar(){
 						num2=1;
 					}
 				}
+/*realiza todas las operaciones depues que las variables toman un valor */
 function resetculminar(){
 					if(num1!=0)
 					{
