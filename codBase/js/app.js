@@ -1,3 +1,4 @@
+			//se declaran las variables
 			var cero=document.getElementById("0");
 			var uno=document.getElementById("1");
 			var dos=document.getElementById("2");
@@ -20,38 +21,40 @@
 			var numeros=[cero,uno,dos,tres,cuatro,cinco,seis,siete,ocho,nueve,on,punto,sign];
             var signos=[dividido,por,mas,menos,igual];
 			var teclas=document.getElementsByClassName("tecla");
-			var contadordisplay;
+			var contadordisplay;//variable que almacena el inner del display
 			var num1;
 			var num2;
-			var operador;
-			var tel;			
-window.onload=function(){
+			var operador;//switch operaciones matematicas
+			var tel;//variable que controla las operaciones matematicas
+//ciclos que controlan la funcionalidad del codigo(aumentar de tamaño teclas, escribir en display, llamar a funciones que realizan las operaciones matematicas)
+window.onload=function(){/*llama funciones para tamaño de teclas*/
 						for(var i=0; i<teclas.length;i++){
 							teclas[i].addEventListener("mousedown",crecer,false);
 							teclas[i].addEventListener("mouseup",disminuir,false);		
-							}
+							}/*llama funciones para escribir en el display*/
 						for(var a=0; a<numeros.length;a++){
 							numeros[a].addEventListener("click",escribir,false);
 							numeros[a].addEventListener("click",funcioncontador,false);
-							}
+							}/*llama funciones de operaciones matematicas*/
 						for(var b=0; b<signos.length;b++){
 							signos[b].addEventListener("click",operaciones,false);
 							signos[b].addEventListener("click",funcioncontador,false);
 							}
 						};
 			
-function crecer(){this.style.transform = "scale(0.9)"}
-function disminuir(){this.style.transform = "scale(1)"}
-function quitar(){document.getElementById("display").innerHTML="";}
+function crecer(){this.style.transform = "scale(0.9)";}//aumenta tamaño de teclas
+function disminuir(){this.style.transform = "scale(1)";}//retorna el tamaño de la tecla
+function quitar(){document.getElementById("display").innerHTML="";}//elimina los numeros en el display
 function reset(){num2=0;}
-function funcioncontador(){contadordisplay=display.innerHTML;}
-function signo(){
+function funcioncontador(){contadordisplay=display.innerHTML;}//guarda lo que sale en el display
+function signo(){/**/
 				var cambiosigno=contadordisplay*-1;
 				document.getElementById("display").innerHTML= cambiosigno;
 				reset();
-				}   
+				}  //cambia de signo al numero en el display
+/*funcion para escribir en la pantalla*/
 function escribir(){
-					 if(display.textContent === "0" || num2!=0){quitar();reset()}
+					 if(display.textContent === "0" || num2!==0 ){quitar();reset()}
 					 if (this===on){document.getElementById("display").innerHTML="0"; reset();}
 					 if (display.textContent.length <= 7) 
 														{
@@ -126,42 +129,42 @@ function escribir(){
 					}
 
 function operaciones(){
-						if (display.textContent!=0){	if(this===mas)
-														{
-															num1=contadordisplay;
-															quitar();
-															operador="+";
-														}
-														else if(this===menos)
-														{
-															num1=contadordisplay;
-															quitar();
-															operador="-";
-														}
-														else if(this===por)
-														{
-															num1=contadordisplay;
-															quitar();
-															operador="*";
-														}
-														else if(this===dividido)
-														{
-															num1=contadordisplay;
-															quitar();
-															operador="/";
-														}
-														else if(this===igual && num2==0)
-														{
-															num2=contadordisplay;
-															culminar();
+						if(this===mas)
+						{
+							num1=contadordisplay;
+							quitar();
+							operador="+";
+						}
+						else if(this===menos)
+						{
+							num1=contadordisplay;
+							quitar();
+							operador="-";
+						}
+						else if(this===por)
+						{
+							num1=contadordisplay;
+							quitar();
+							operador="*";
+						}
+						else if(this===dividido)
+						{
+							num1=contadordisplay;
+							quitar();
+							operador="/";
+						}
+						else if(this===igual && num2==0)
+						{
+							num2=contadordisplay;
+							culminar();
 
-														}
-													else if(this===igual && num2 !=0)
-														{
-															num2=contadordisplay;
-															resetculminar();
-														}
-												  }
+						}
+					else if(this===igual && num2 !=0)
+						{
+							num2=contadordisplay;
+							resetculminar();
+						}
+												  
 						}
 function culminar(){
 					if(num1!=0)
@@ -184,6 +187,7 @@ function culminar(){
 						var loco = tel.toString().substring(0, 8);		
 						document.getElementById("display").innerHTML= parseFloat(loco);
 						num1=num2;
+						num2=1;
 					}
 				}
 function resetculminar(){
